@@ -1,0 +1,63 @@
+import math
+def calc():
+    badge = input('''Enter the badge you would like to see your progress towards -  
+        Flawless I
+        Perfect I
+        Wood Shieldsman,
+        Bronze Shieldsman
+        Silver Shieldsman
+        Gold Shieldsman
+        Platinum Huntsman
+        Wood Huntsman
+        Bronze Huntsman,
+        Silver Huntsman
+        Gold Huntsman
+        Platinum Huntsman
+        n/a": 1
+    ''')
+    badge = badge.lower()
+    #all the badges xp so i can compare user xp to these badges
+    badges = {
+        "flawless I": 66960,
+        "perfect I": 112455,
+        "wood shieldsman": 180320,
+        "bronze shieldsman": 214280,
+        "silver shieldsman": 251165,
+        "gold shieldsman": 290975,
+        "platinum huntsman": 333710,
+        "wood huntsman": 379370,
+        "bronze huntsman": 444800,
+        "silver huntsman": 515430,
+        "gold huntsman": 591260,
+        "platinum huntsman": 672290,
+        "n/a": 1
+    }
+    #loops thru all the badges in the dictionary above ^ and if user inputs name that looks like badge name, it'll start comparing
+    divisionxp = 1
+    for badgename in badges:
+        if badge.lower() == badgename:
+            divisionxp = badges[badgename]
+
+#takes level and applies formula to get amt of xp required to complete level
+    level = input("What is your level? - ")
+    xp = (int(level) * 13) + 67
+    totalxp = 0
+    #xpleft = input("XP gained in that level?")
+    #will take xp variable, add it to itself but each iteration it gets added, 13 will be subtracted until variable = 67 or less
+    while xp > 0:
+        totalxp += int(xp)
+        xp -= 13
+        if xp <= 67:
+            break
+
+#takes total xp and divides it by the required xp
+    percent = (totalxp/divisionxp) * 100
+    print("You have gained " + str(totalxp) + " xp!")
+    print("You have completed " + str(round(percent, 2)) + "% towards " + badge)
+
+running = True
+while running:
+    try:
+        calc()
+    except ValueError:
+        print("That isn't a valid number! ")
